@@ -1,6 +1,10 @@
 import 'package:adminpanel/models/MyFiles.dart';
 import 'package:adminpanel/screens/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'file_info_card.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -36,42 +40,14 @@ class MyFiles extends StatelessWidget {
           shrinkWrap: true,
           itemCount: demoMyFiles.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, crossAxisSpacing: defaultPadding),
-          itemBuilder: (context, index) => FilesInCard(),
+              crossAxisCount: 4,
+              crossAxisSpacing: defaultPadding,
+              childAspectRatio: 1.4),
+          itemBuilder: (context, index) => FilesInCard(
+            info: demoMyFiles[index],
+          ),
         )
       ],
-    );
-  }
-}
-
-class FilesInCard extends StatelessWidget {
-  const FilesInCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(defaultPadding),
-      decoration: const BoxDecoration(
-          color: secondaryColor,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: demoMyFiles[0].color,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-              )
-            ],
-          )
-        ],
-      ),
     );
   }
 }
